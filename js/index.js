@@ -55,6 +55,9 @@
     doms.close.addEventListener("click",layout)
     //发送消息
     async function sendContent(){
+      if(!doms.meg.value.trim()){
+        return
+      }
         let obj = {content:doms.msg.value}
         let time = date.format(new Date().getTime())
         doms.container.innerHTML += `<div class="chat-item me">
