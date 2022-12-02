@@ -28,7 +28,7 @@
             let data = await API.reg(regForm)
             if(data.code === 0){
                 if(window.confirm("注册成功，要跳转到登录页吗？")){
-                    location.href = "login.html";
+                    location.replace("login.html");
                 }
                 doms.user.value = doms.pass.value= doms.passCfm.value = doms.name.value = ""
                 

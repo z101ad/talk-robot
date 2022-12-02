@@ -18,7 +18,8 @@
         close:$(".close")
     }
     window.onload = async function(){
-        let history = await API.getHistory()
+        if(localStorage.getItem("token")) {
+          let history = await API.getHistory()
         let content = ""
         history.data.forEach((item,index)=>{
             if(index %2 === 0){
@@ -37,10 +38,16 @@
             }
         })
         doms.container.innerHTML = content
+        doms.container.scrollTop = doms.container.scrollHeight
         let {data} = await API.proFile()
         doms.loginId.innerText = data.loginId
         doms.nickname.innerText = data.nickname
         window.onload = null
+        }
+        else {
+          location.replace("login.html")
+        }
+        
     }
     //发送
     doms.btn.addEventListener("click",sendContent)
@@ -55,6 +62,7 @@
         <div class="chat-content">${obj.content}</div>
         <div class="chat-date">${time}</div>
       </div>`
+      doms.container.scrollTop = doms.container.scrollHeight
       doms.msg.value = ""
         let {data,code} = await API.send(obj)
         if(code === 0){
@@ -63,11 +71,12 @@
             <div class="chat-content">${data.content}</div>
             <div class="chat-date">${date.format(data.createdAt)}</div>
           </div>`
+          doms.container.scrollTop = doms.container.scrollHeight
         }
     }
     //关闭窗口
     function layout(){
         localStorage.removeItem("token")
-        location.href = "login.html"
+        location.replace("login.html")
     }
 })()

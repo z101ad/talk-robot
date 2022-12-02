@@ -93,7 +93,6 @@ body {
   overflow: hidden scroll;
   padding: 20px;
   background: #f5f5f5;
-  scroll-behavior: smooth;
 }
 .chat-container::-webkit-scrollbar {
   width: 5px;
