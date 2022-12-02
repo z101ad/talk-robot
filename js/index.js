@@ -55,7 +55,8 @@
     doms.close.addEventListener("click",layout)
     //发送消息
     async function sendContent(){
-      if(!doms.meg.value.trim()){
+      if(!doms.msg.value.trim()){
+        console.log("23");
         return
       }
         let obj = {content:doms.msg.value}
